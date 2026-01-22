@@ -22,7 +22,7 @@ class AuthorityServiceTest {
     @Test
     void testCheckToken() {
         AuthorityService service = new AuthorityService(repositoryUsers);
-        when(repositoryUsers.getUser((Login) any())).thenReturn(java.util.Optional.of(new User("test", "pass")));
+        when(repositoryUsers.findByLogin((Login) any())).thenReturn(java.util.Optional.of(new User("test", "pass")));
 
         boolean result = service.checkToken(new Login("token"));
 
@@ -32,7 +32,7 @@ class AuthorityServiceTest {
     @Test
     void testCheckTokenFalse() {
         AuthorityService service = new AuthorityService(repositoryUsers);
-        when(repositoryUsers.getUser((Login) any())).thenReturn(java.util.Optional.empty());
+        when(repositoryUsers.findByLogin((Login) any())).thenReturn(java.util.Optional.empty());
 
         boolean result = service.checkToken(new Login("wrong"));
 
