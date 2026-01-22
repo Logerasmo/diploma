@@ -2,9 +2,9 @@ package com.example.diploma;
 
 import com.example.diploma.repository.RepositoryFiles;
 import com.example.diploma.service.AuthorityService;
-import com.example.diploma.service.File;
+import com.example.diploma.domenClasses.FileClass;
 import com.example.diploma.service.FileService;
-import com.example.diploma.service.Login;
+import com.example.diploma.domenClasses.Login;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class FileServiceTest {
+class FileClassServiceTest {
 
     @Mock
     RepositoryFiles repositoryFiles;

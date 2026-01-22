@@ -1,4 +1,4 @@
-package com.example.diploma.service;
+package com.example.diploma.domenClasses;
 
 public class Error {
     private String message;

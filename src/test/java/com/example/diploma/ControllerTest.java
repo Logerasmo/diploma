@@ -1,6 +1,7 @@
 package com.example.diploma;
 
 import com.example.diploma.controller.Controller;
+import com.example.diploma.dto.LoginDTO;
 import com.example.diploma.service.AuthorityService;
 import com.example.diploma.service.FileService;
 import org.junit.jupiter.api.Test;
@@ -24,12 +25,12 @@ class ControllerTest {
     @Test
     void testLogin() {
         Controller controller = new Controller(authorityService, fileService);
-        ResponseEntity<String> expected = ResponseEntity.ok("OK");
+        ResponseEntity<?> expected = ResponseEntity.ok("OK");
 
         when(authorityService.login("user", "pass")).thenReturn(expected);
 
-        ResponseEntity<String> result = controller.login(
-                new com.example.diploma.RequestBodyGetters.RequestBodyGetterLogin() {{
+        ResponseEntity<?> result = controller.login(
+                new LoginDTO() {{
                     setLogin("user");
                     setPassword("pass");
                 }}

@@ -1,14 +1,14 @@
-package com.example.diploma.repository;
+package com.example.diploma.dto;
 
-import com.example.diploma.service.File;
+import com.example.diploma.domenClasses.FileClass;
 
 public class FileNameAndSize {
     private String filename;
     private Integer size;
 
-    public FileNameAndSize(File file){
-        this.filename = file.getFilename();
-        this.size = file.getFile().getBytes().length;
+    public FileNameAndSize(FileClass fileclass){
+        this.filename = fileclass.getFilename();
+        this.size = fileclass.getFile().getBytes().length;
     }
 
     public FileNameAndSize(String filename, Integer size) {

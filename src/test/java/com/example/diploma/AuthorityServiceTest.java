@@ -2,8 +2,8 @@ package com.example.diploma;
 
 import com.example.diploma.repository.RepositoryUsers;
 import com.example.diploma.service.AuthorityService;
-import com.example.diploma.service.Login;
-import com.example.diploma.service.User;
+import com.example.diploma.domenClasses.Login;
+import com.example.diploma.repository.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

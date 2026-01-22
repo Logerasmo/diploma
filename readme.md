@@ -17,7 +17,7 @@ body json
             type: string
           
 
-## POST http:/localhost:8800/file
+## POST http:/localhost:8800/fileClass
 header:
 `auth-token
     type: string`
@@ -33,6 +33,6 @@ body multipart/form-data:
       properties:
         hash:
           type: string
-        file:
+        fileClass:
           type: string
           format: binary

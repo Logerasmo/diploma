@@ -1,6 +1,6 @@
-package com.example.diploma.RequestBodyGetters;
+package com.example.diploma.dto;
 
-public class RequestBodyGetterLogin {
+public class LoginDTO {
     private String login;
     private String password;
 

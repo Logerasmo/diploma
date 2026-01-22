@@ -1,12 +1,12 @@
-package com.example.diploma.RequestBodyGetters;
+package com.example.diploma.dto;
 
-public class RequestBodyGetterFilename {
+public class FilenameDTO {
     private String filename;
 
-    public RequestBodyGetterFilename(String filename) {
+    public FilenameDTO(String filename) {
         this.filename = filename;
     }
-    public RequestBodyGetterFilename(){}
+    public FilenameDTO(){}
 
     public String getFilename() {
         return filename;

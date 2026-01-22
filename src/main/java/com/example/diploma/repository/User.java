@@ -1,11 +1,20 @@
-package com.example.diploma.service;
+package com.example.diploma.repository;
+
+import com.example.diploma.domenClasses.Login;
+import jakarta.persistence.*;
 
 import java.util.Optional;
 import java.util.UUID;
-
+@Entity
 public class User {
+    @Embedded
     private final Login loginToken;
+
+    @Id
+    @Column(nullable = false)
     private final String login;
+
+    @Column(nullable = false)
     private final String password;
 
     public User(String login, String password) {

@@ -1,12 +1,18 @@
-package com.example.diploma.service;
+package com.example.diploma.domenClasses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
-
+@Embeddable
 public class Login {
     @JsonProperty("auth-token")
     private String authToken;
+
+    private Long id;
 
     public Login(){}
 
@@ -20,6 +26,14 @@ public class Login {
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

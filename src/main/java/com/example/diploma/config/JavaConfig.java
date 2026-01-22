@@ -10,27 +10,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JavaConfig {
+
     @Bean
-    public RepositoryUsers repositoryUsers(){
-        return new RepositoryUsers();
+    public AuthorityService authorityService(RepositoryUsers repositoryUsers){
+        return new AuthorityService(repositoryUsers);
     }
 
     @Bean
-    public AuthorityService authorityService(){
-        return new AuthorityService(repositoryUsers());
+    public FileService fileService(RepositoryFiles repositoryFiles, AuthorityService authorityService){
+        return new FileService(repositoryFiles, authorityService);
     }
 
     @Bean
-    public RepositoryFiles repositoryFiles(){
-        return new RepositoryFiles();
-    }
-    @Bean
-    public FileService fileService(){
-        return new FileService(repositoryFiles(), authorityService());
-    }
-
-    @Bean
-    public Controller controller(){
-        return new Controller(authorityService(), fileService());
+    public Controller controller(AuthorityService authorityService, FileService fileService){
+        return new Controller(authorityService, fileService);
     }
 }

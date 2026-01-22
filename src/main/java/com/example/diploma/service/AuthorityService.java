@@ -1,49 +1,45 @@
 package com.example.diploma.service;
 
+import com.example.diploma.domenClasses.Login;
 import com.example.diploma.repository.RepositoryUsers;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import tools.jackson.databind.ObjectMapper;
+import com.example.diploma.repository.User;
 
 public class AuthorityService {
     RepositoryUsers repositoryUsers;
-    tools.jackson.databind.ObjectMapper mapper = new ObjectMapper();
 
     public AuthorityService(RepositoryUsers repositoryUsers) {
         this.repositoryUsers = repositoryUsers;
     }
 
-    public ResponseEntity<String> login(String login, String password) {
-        if (repositoryUsers.getUser(login).isEmpty()) {
-            return new ResponseEntity<>(mapper.writeValueAsString(
-                    new Error("Bad credentials", 400)),
-                    HttpStatusCode.valueOf(400));
+    public Login login(String login, String password) {
+        if (repositoryUsers.findById(login).isEmpty()) {
+            return null;
         }
-        User user = repositoryUsers.getUser(login).get();
+        User user = repositoryUsers.findById(login).get();
         var login_opt = user.login(login, password);
-        if (login_opt.isEmpty()) {
-            return new ResponseEntity<>(mapper.writeValueAsString(
-                    new Error("Bad credentials", 400)),
-                    HttpStatusCode.valueOf(400));
-        }
-        return new ResponseEntity<>(mapper.writeValueAsString(
-                login_opt.get()),
-                HttpStatusCode.valueOf(200));
+        return login_opt.orElse(null);
     }
 
-    public ResponseEntity<String> logout(Login login) {
-        var user_opt = repositoryUsers.getUser(login);
-        if (user_opt.isPresent()) {
-            user_opt.get().logout();
-            return new ResponseEntity<>(HttpStatusCode.valueOf(200));
+    public void logout(Login login) {
+        var user_opt = repositoryUsers.findByLogin(login);
+        user_opt.ifPresent(User::logout);
+    }
+    public boolean addUser(User user){
+        if (!repositoryUsers.existsById(user.getLogin())){
+            repositoryUsers.save(user);
+            return true;
         }
-
-        return new ResponseEntity<>(mapper.writeValueAsString(
-                new Error("Unauthorized error", 401)),
-                HttpStatusCode.valueOf(401));
+        return false;
+    }
+    public boolean deleteUser(User user){
+        if (repositoryUsers.existsById(user.getLogin())){
+            repositoryUsers.deleteById(user.getLogin());
+            return true;
+        }
+        return false;
     }
     public boolean checkToken(Login login){
-        return repositoryUsers.getUser(login).isPresent();
+        return repositoryUsers.findByLogin(login).isPresent();
     }
 }
 
