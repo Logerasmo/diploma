@@ -75,7 +75,7 @@ public class Controller {
                                              @RequestParam("filename") String filename){
         if (authorityService.checkToken(tokenToLogin(token))) {
             var file = fileService.getFile(filename);
-            if (fileService.getFile(filename) != null) {
+            if (file != null) {
                 return new ResponseEntity<>(file.getFile_content(), HttpStatusCode.valueOf(200));
             }
 
